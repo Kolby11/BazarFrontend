@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Listing } from '../../data/interfaces';
+import { Listing } from '../../data/types';
 import ListingMenu from '../Profile/components/ListingsMenu';
 import ProfileInfo from '../Profile/components/ProfileInfo';
 import { ListingsDisplay } from '../shared/ListingDisplay';
@@ -31,7 +31,7 @@ const Profile = () => {
       <Navbar />
       <ProfileInfo />
       <ListingMenu />
-      <ListingsDisplay listings={listings} listingsAmount={2} isOwner={true} />
+      <ListingsDisplay listings={listings} />
     </div>
   );
 };

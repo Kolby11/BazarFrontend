@@ -1,10 +1,25 @@
-import * as React from 'react';
-import { Outlet, Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+//types
+import { Listing } from '../../data/types';
+//services
+import { getAllListings } from '../../services/listingApi';
+
+//components
 import Filter from '../shared/Filter';
 import { ListingsDisplay } from '../shared/ListingDisplay';
 import Navbar from '../shared/Navbar';
 
 const Home = () => {
+  const [listings, setListings] = useState<Listing[]|null>(null);
+
+  useEffect(() => {
+    const fetchListings = async () => {
+      const result = await getAllListings();
+      setListings(result);
+    };
+    fetchListings();
+  }, []);
+
   return (
     <div>
       <Navbar />
@@ -28,7 +43,10 @@ const Home = () => {
       <div className="topnav">
         <Filter />
       </div>
-      <ListingsDisplay listings={[]} listingsAmount={0} isOwner={false} />
+      {listings!=null && (
+  <ListingsDisplay listings={listings} />
+)}
+
     </div>
   );
 };
