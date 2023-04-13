@@ -1,19 +1,18 @@
 import * as React from 'react';
-
-let kategorie: string[] = [
-  'Zvieratá',
-  'Deti',
-  'Práca',
-  'Auto',
-  'Motocykle',
-  'Stroje',
-  'Záhrada',
-  'Mobily',
-  'PC',
-];
+import { Category } from '../../data/types';
+import { getAllCategories } from '../../services/categoryApi';
+import { useEffect, useState } from 'react';
 
 const Filter = () => {
-  const [sliderValue, setSlider] = React.useState<number>(0);
+  const [sliderValue, setSlider] = useState<number>(0);
+  const [categories, setCategories] = useState<Category[]|null>(null);
+
+  useEffect(() => {const fetchListings = async () => {
+    const result = await getAllCategories();
+    setCategories(result);
+  };
+    fetchListings();
+  }, []);
   return (
     <div className="d-flex justify-content-start bg-primary p-2 m-2 rounded-3 grid gap-0 column-gap-3">
       <input
@@ -22,9 +21,11 @@ const Filter = () => {
         placeholder="Search.."
       ></input>
       <select className="input-group-text" name="category" id="category">
-        {kategorie.map((item) => {
-          return <option>{item}</option>;
-        })}
+        {categories!=null && (categories.map((item) => 
+        {
+          return <option>{item.name}</option>;
+        })
+          )}
       </select>
       <div className="slider">
         <input
