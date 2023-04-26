@@ -22,10 +22,10 @@ const Filter = () => {
       ></input>
       <select className="input-group-text" name="category" id="category">
         {categories!=null && (categories.map((item) => 
-        {
-          return <option>{item.name}</option>;
-        })
-          )}
+          {
+            return <option>{item.name}</option>;
+          })
+        )}
       </select>
       <div className="slider">
         <input

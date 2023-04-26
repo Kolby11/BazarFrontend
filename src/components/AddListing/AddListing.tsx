@@ -1,51 +1,59 @@
 import * as React from 'react';
-let kategorie: string[] = [
-  'Zvieratá',
-  'Deti',
-  'Práca',
-  'Auto',
-  'Motocykle',
-  'Stroje',
-  'Záhrada',
-  'Mobily',
-  'PC',
-];
+import { useEffect, useState } from 'react';
+import { getAllCategories } from '../../services/categoryApi';
+import { Category, Listing } from '../../data/types';
+
 
 const AddListing = () => {
-  return (
-     <div className="d-flex justify-content-center">
-      <div className="align-bottom">
-        <div className="flex-row align-content-center">
-          <br />
-        <form>
-        <br/>
-        <br/>
-          <label>Meno vášho inzeratu: </label>
-          <br/>
-          <input type="text" id="meno" placeholder="Meno inzeratu" />
-          <br/>
-          Zadajte cenu inzeratu:
-        <br/>
-      <input type="text" id="cena" placeholder="Cena" />
-          <br/>
-          Zadajte Lokalitu
-          <br/>
-          <input type="text" id="lokalita" placeholder="Lokalita" />
-        <br/>
-          <label>Kategoria:</label>
-          <br/>
-          <div>
-      <select name="cars" id="cars">
-        {kategorie.map((item) => {
-          return <option>{item}</option>;
-        })}
-      </select>
-        <div id="SelectValue"></div>
+  const [listingBody, setListingBody]=useState<Listing|null>(null)
+  const [categories, setCategories]=useState<Category[]|null>(null)
 
-    </div>
-        </form>
+  useEffect(() => {
+    const fetchListings = async () => {
+      const result = await getAllCategories();
+      setCategories(result);
+    };
+    fetchListings();
+  }, []);
+  return (
+     <div>
+    <div className="container text-center">
+      <div className="row justify-content-md-center">
+        <div className="col-6 row justify-content-md-center">
+          <div className="input-group mb-3 pt-3">
+            <span className="input-group-text" id="inputGroup-sizing-default">Zadajte názov inzerátu:</span>
+            <input type="text" className="form-control" aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"/>
+          </div>
+          <div className="input-group mb-3">
+            <textarea className="form-control" aria-label="With textarea"
+              placeholder="Zadaje popisok ku vašmu inzerátu"></textarea>
+          </div>
+          <div className="input-group mb-3">
+            <label className="input-group-text">Vyberte kategoriu</label>
+            <select className="form-select" id="inputGroupSelect01">
+              {categories!=null && (categories.map((item) => 
+                {
+                  return <option>{item.name}</option>;
+                })
+              )}
+            </select>
+          </div>
+          <div className="input-group mb-3">
+            <input type="file" className="form-control" id="inputGroupFile01"/>
+          </div>
+
+          <div className="input-group mb-3">
+            <span className="input-group-text">€</span>
+            <span className="input-group-text">0.00</span>
+            <input type="text" className="form-control" aria-label="Dollar amount (with dot and two decimal places)"/>
+
+          </div>
+          <div>
+          <input className="btn btn-primary col-3 mb-5" type="submit" value="Submit"/>
+          </div>
+        </div>
       </div>
-      <button  type="submit" >Add Listing</button>
     </div>
   </div>
 
