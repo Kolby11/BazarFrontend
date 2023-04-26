@@ -6,28 +6,9 @@ import { ListingsDisplay } from '../shared/ListingDisplay';
 import Navbar from '../shared/Navbar';
 
 const Profile = () => {
-  let listings: Listing[] = [
-    {
-      id: 1,
-      name: 'Auto',
-      category_id: 3,
-      price: 250,
-      locality: 'Bratislava',
-      description: 'Ukradnute',
-      watch_count: 23,
-    },
-    {
-      id: 2,
-      name: 'Hracka',
-      category_id: 3,
-      price: 250,
-      locality: 'Bratislava',
-      description: 'Ukradnute',
-      watch_count: 23,
-    },
-  ];
+  let listings: Listing[] = [];
   return (
-    <div className="flex">
+    <div className='m-5 flex'>
       <Navbar />
       <ProfileInfo />
       <ListingMenu />

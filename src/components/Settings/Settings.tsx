@@ -4,7 +4,7 @@ import Navbar from '../shared/Navbar';
 
 const Settings = () => {
   return (
-    <div>
+    <div className='m-5'>
       <Navbar />
       <h1 className="text-center">Settings</h1>
       <ProfileSettingsInfo />

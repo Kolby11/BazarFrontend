@@ -1,4 +1,4 @@
-export type Listing = {
+export interface Listing {
    id: number;
    name: string;
    category_id: number;
@@ -6,10 +6,10 @@ export type Listing = {
    locality: string;
    description: string;
    watch_count: number;
-};
-export type Category = {
+}
+export interface Category {
    id: number;
    name: string;
-};
+}
 
-export type User = {};
+export interface User {}

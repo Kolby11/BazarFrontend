@@ -33,7 +33,7 @@ export const ListingsDisplay = ({ listings }: { listings: Listing[] }) => {
             </div>
             <b className="col">{listing.price}</b>
             <p className="col">{listing.locality}</p>
-            <button onClick={()=>deleteHandler(listing.id)}>Delete</button>
+            <button className="btn btn-danger" onClick={()=>deleteHandler(listing.id)}>Delete</button>
             <hr />
           </div>)
             

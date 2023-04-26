@@ -21,7 +21,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
+    <div className='m-5'>
       <Navbar />
       <h1>Bazoš</h1>
       <p>Icon buttons:</p>

@@ -15,8 +15,12 @@ const AddListing = () => {
     };
     fetchListings();
   }, []);
+
+  const submitListning=()=>{
+    
+  }
   return (
-     <div>
+    <div>
     <div className="container text-center">
       <div className="row justify-content-md-center">
         <div className="col-6 row justify-content-md-center">
@@ -42,12 +46,10 @@ const AddListing = () => {
           <div className="input-group mb-3">
             <input type="file" className="form-control" id="inputGroupFile01"/>
           </div>
-
           <div className="input-group mb-3">
             <span className="input-group-text">€</span>
             <span className="input-group-text">0.00</span>
             <input type="text" className="form-control" aria-label="Dollar amount (with dot and two decimal places)"/>
-
           </div>
           <div>
           <input className="btn btn-primary col-3 mb-5" type="submit" value="Submit"/>
