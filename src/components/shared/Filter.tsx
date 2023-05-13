@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { Category } from '../../data/types';
-import { getAllCategories } from '../../services/categoryApi';
+import { Category } from '../../data/interfaces';
+import { getAllCategories } from '../../apiServices/categoryApi';
 import { useEffect, useState } from 'react';
+
+import "./styles/filter.css"
 
 const Filter = () => {
   const [sliderValue, setSlider] = useState<number>(0);
@@ -23,6 +25,7 @@ const Filter = () => {
       <select className="input-group-text" name="category" id="category">
         {categories!=null && (categories.map((item) => 
           {
+            console.log(item.name)
             return <option>{item.name}</option>;
           })
         )}

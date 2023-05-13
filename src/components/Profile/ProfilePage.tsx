@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Listing } from '../../data/types';
+import { Listing } from '../../data/interfaces';
 import ListingMenu from '../Profile/components/ListingsMenu';
 import ProfileInfo from '../Profile/components/ProfileInfo';
 import { ListingsDisplay } from '../shared/ListingDisplay';

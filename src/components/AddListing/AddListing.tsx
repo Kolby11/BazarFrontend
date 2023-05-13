@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { getAllCategories } from '../../services/categoryApi';
-import { Category, Listing } from '../../data/types';
+import { getAllCategories } from '../../apiServices/categoryApi';
+import { Category, Listing } from '../../data/interfaces';
 
 
 const AddListing = () => {

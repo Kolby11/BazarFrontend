@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 //types
-import { Listing } from '../../data/types';
+import { Listing } from '../../data/interfaces';
 //services
-import { getAllListings } from '../../services/listingApi';
+import { getAllListings } from '../../apiServices/listingApi';
 
 //components
 import Filter from '../shared/Filter';
@@ -24,7 +24,6 @@ const Home = () => {
     <div className='m-5'>
       <Navbar />
       <h1>Bazoš</h1>
-      <p>Icon buttons:</p>
       <button className="btn">
         <i className="fa fa-home"></i>
       </button>
@@ -46,7 +45,9 @@ const Home = () => {
       {listings!=null && (
   <ListingsDisplay listings={listings} />
 )}
-
+      <div className="stlacitko">
+          <p className="plusko">+</p>
+      </div>
     </div>
   );
 };

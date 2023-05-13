@@ -2,3 +2,20 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
+.stlacitko{
+  background-color: dodgerblue;
+  width: 80px;
+  height: 80px;
+  border-radius: 50px;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.stlacitko .plusko{
+  font-size: 60px;
+  display: inline-block;
+  padding: 1vh;
+}

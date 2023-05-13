@@ -1,4 +1,4 @@
-import { Listing } from "../data/types";
+import { Listing } from "../data/interfaces";
 import axios from "axios";
 
 export async function getAllListings(limit?: number): Promise<Listing[] | null> {
