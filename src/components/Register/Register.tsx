@@ -1,4 +1,6 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
+import { registerUser } from '../../apiServices/serviceApi';
+import { SecureUser } from '../../data/interfaces';
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
@@ -16,10 +18,16 @@ const RegistrationForm = () => {
     }));
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(formData);
-    // Further processing or API submission
+    const user: SecureUser={ id:undefined, username: formData.prihlasovacieMeno,
+      password: formData.heslo,
+      phone_number: formData.telefonneCislo,
+      email: formData.email }
+    const request = await registerUser(user);
+    console.log(user)
+    console.warn(request)
+
   };
 
   return (
@@ -61,7 +69,7 @@ const RegistrationForm = () => {
         value={formData.telefonneCislo}
         onChange={handleInputChange}
       />
-      <input type="submit" value="Submit" />
+      <input type="submit" value="Registrovať" />
     </form>
   );
 };

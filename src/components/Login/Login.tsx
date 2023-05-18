@@ -1,7 +1,8 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 
 import "./styles/login.css"
-import { loginUser } from '../../apiServices/registerApi';
+import { loginUser } from '../../apiServices/serviceApi';
+import { LoginCredentials } from '../../data/interfaces';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -19,15 +20,14 @@ const Login = () => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(formData);
-    console.log({ username: formData.prihlasovacieMeno, password: formData.heslo })
-    const authId = await loginUser({ username: formData.prihlasovacieMeno, password: formData.heslo });
+    const loginCredentials: LoginCredentials= { username: formData.prihlasovacieMeno, password: formData.heslo }
+    const authId = await loginUser(loginCredentials);
     console.log(authId);
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1>Registrácia</h1>
+      <h1>Prihlásenie</h1>
       <label htmlFor="prihlasovacie meno">Prihlasovacie meno:</label>
       <input
         type="text"
@@ -46,7 +46,7 @@ const Login = () => {
         value={formData.heslo}
         onChange={handleInputChange}
       />
-      <input type="submit" value="Submit" />
+      <input type="submit" value="Prihlásiť sa" />
     </form>
     )
 }

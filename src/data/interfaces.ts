@@ -20,7 +20,7 @@ export interface User {
 }
 
 export interface SecureUser{
-   id: number;
+   id: number|undefined;
    username: string;
    password: string;
    email: string;
