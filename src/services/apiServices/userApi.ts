@@ -13,3 +13,5 @@ export async function getUserListings(id: Number): Promise<Listing[] | undefined
       return undefined;
    }
 }
+
+export async function getUserData();
