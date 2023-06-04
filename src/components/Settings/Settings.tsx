@@ -1,7 +1,9 @@
-import * as React from 'react';
+import { useEffect, useState } from 'react';
 import ProfileSettingsInfo from '../Settings/components/ProfileInfo';
 import Navbar from '../shared/Navbar';
 import Footer from '../shared/Footer';
+import { User } from '../../data/interfaces';
+import { getUserData } from '../../services/apiServices/userApi';
 
 const Settings = () => {
 	return (

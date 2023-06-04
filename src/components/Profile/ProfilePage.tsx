@@ -1,20 +1,31 @@
-import * as React from 'react';
-import { Listing } from '../../data/interfaces';
+import React, { useEffect, useState } from 'react';
+import { Listing, User } from '../../data/interfaces';
 import ListingMenu from '../Profile/components/ListingsMenu';
 import ProfileInfo from '../Profile/components/ProfileInfo';
 import { ListingsDisplay } from '../shared/ListingDisplay';
 import Navbar from '../shared/Navbar';
 import Footer from '../shared/Footer';
+import { getUserData } from '../../services/apiServices/userApi';
 
+import "./styles/profilePage.css"
 const Profile = () => {
   const sessionStr = localStorage.getItem("sessionStr");
   const isLoggedIn = sessionStr !== null;
 
-  const [profileInfo, setProfileInfo] = React.useState(undefined);
-  const [myListings, setMyListings] = React.useState(undefined);
-  const [mySavedListings, setMySavedListings] = React.useState(undefined)
+  const [myListings, setMyListings] = useState(undefined);
+  const [mySavedListings, setMySavedListings] = useState(undefined)
+  const [selectedListings, setSelectedListings] = useState(undefined)
 
-  const [selectedListings, setSelectedListings] = React.useState(undefined)
+  // const fetchListings = async () => {
+  //   const result = await getAllListings();
+  //   console.warn(result)
+  //   setListings(result);
+  // };
+
+  useEffect(() => {
+    //fetchListings();
+  }, []);
+
   return (
     <div>
       <Navbar />

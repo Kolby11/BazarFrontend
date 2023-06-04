@@ -13,12 +13,13 @@ import Footer from '../shared/Footer';
 const Home = () => {
 	const [listings, setListings] = useState<Listing[] | undefined>(undefined);
 
+	const fetchListings = async () => {
+		const result = await getAllListings();
+		console.warn(result)
+		setListings(result);
+	};
+
 	useEffect(() => {
-		const fetchListings = async () => {
-			const result = await getAllListings();
-			console.warn(result)
-			setListings(result);
-		};
 		fetchListings();
 	}, []);
 
