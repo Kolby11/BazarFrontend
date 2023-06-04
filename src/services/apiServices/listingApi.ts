@@ -1,7 +1,7 @@
-import { Listing } from "../data/interfaces";
+import { Listing } from "../../data/interfaces";
 import axios from "axios";
 
-export async function getAllListings(limit?: number): Promise<Listing[] | null> {
+export async function getAllListings(limit?: number): Promise<Listing[] | undefined> {
    try {
       if (limit) {
          const response = await axios.get(`http://localhost:5000/api/v1/listing/limit=${limit}`);
@@ -14,7 +14,7 @@ export async function getAllListings(limit?: number): Promise<Listing[] | null> 
       }
    } catch (error) {
       console.error(error);
-      return null;
+      return undefined;
    }
 }
 

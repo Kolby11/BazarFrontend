@@ -1,12 +1,14 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 
 import "./styles/login.css"
-import { loginUser } from '../../apiServices/serviceApi';
+import { loginUser } from '../../services/apiServices/authApi';
 import { LoginCredentials } from '../../data/interfaces';
+import Navbar from '../shared/Navbar';
+import Footer from '../shared/Footer';
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    prihlasovacieMeno: '',
+    email: '',
     heslo: '',
   });
 
@@ -20,35 +22,43 @@ const Login = () => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const loginCredentials: LoginCredentials= { username: formData.prihlasovacieMeno, password: formData.heslo }
-    const authId = await loginUser(loginCredentials);
-    console.log(authId);
+    const loginCredentials: LoginCredentials = { email: formData.email, password: formData.heslo }
+    const success = await loginUser(loginCredentials);
+    if (success && localStorage["sessionStr"]) {
+      console.log("success")
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Prihlásenie</h1>
-      <label htmlFor="prihlasovacie meno">Prihlasovacie meno:</label>
-      <input
-        type="text"
-        id="prihlasovacie meno"
-        name="prihlasovacieMeno"
-        required
-        value={formData.prihlasovacieMeno}
-        onChange={handleInputChange}
-      />
-      <label htmlFor="heslo">Heslo:</label>
-      <input
-        type="password"
-        id="heslo"
-        name="heslo"
-        required
-        value={formData.heslo}
-        onChange={handleInputChange}
-      />
-      <input type="submit" value="Prihlásiť sa" />
-    </form>
-    )
+    <div>
+      <Navbar />
+      <div className='wrapper'>
+        <form onSubmit={handleSubmit}>
+          <h1>Prihlásenie</h1>
+          <label htmlFor="prihlasovacie meno">Email:</label>
+          <input
+            type="text"
+            id="prihlasovacie meno"
+            name="email"
+            required
+            value={formData.email}
+            onChange={handleInputChange}
+          />
+          <label htmlFor="heslo">Heslo:</label>
+          <input
+            type="password"
+            id="heslo"
+            name="heslo"
+            required
+            value={formData.heslo}
+            onChange={handleInputChange}
+          />
+          <input type="submit" value="Prihlásiť sa" />
+        </form>
+      </div>
+      <Footer />
+    </div >
+  )
 }
 
 export default Login;

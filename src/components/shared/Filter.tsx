@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Category } from '../../data/interfaces';
-import { getAllCategories } from '../../apiServices/categoryApi';
+import { getAllCategories } from '../../services/apiServices/categoryApi';
 import { useEffect, useState } from 'react';
 
 import "./styles/filter.css"

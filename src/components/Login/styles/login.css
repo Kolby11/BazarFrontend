@@ -41,3 +41,10 @@ input[type=submit] {
 input[type=submit]:hover {
 	background-color: dodgerblue;
 }
+.wrapper{
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

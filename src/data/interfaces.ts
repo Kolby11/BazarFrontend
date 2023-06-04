@@ -19,15 +19,15 @@ export interface User {
    phone_number: string;
 }
 
-export interface SecureUser{
-   id: number|undefined;
+export interface SecureUser {
+   id: number | undefined;
    username: string;
    password: string;
    email: string;
    phone_number: string;
 }
 
-export interface LoginCredentials{
-   username: string;
+export interface LoginCredentials {
+   email: string;
    password: string;
 }

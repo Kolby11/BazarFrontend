@@ -1,4 +1,4 @@
-import { Category } from "../data/interfaces";
+import { Category } from "../../data/interfaces";
 import axios from "axios";
 
 export async function getAllCategories(limit?: number): Promise<Category[] | null> {
