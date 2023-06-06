@@ -1,9 +1,7 @@
 import * as React from 'react';
-import { useState } from 'react';
 import { Listing } from '../../data/interfaces';
 
 export const ListingsDisplay = ({ listings }: { listings: Listing[] | undefined }) => {
-	const [count, setCount] = useState(0);
 	console.warn(listings)
 	return (
 		<div className="m-5">
