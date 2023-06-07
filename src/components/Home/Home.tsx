@@ -9,6 +9,7 @@ import Filter from '../shared/Filter';
 import { ListingsDisplay } from '../shared/ListingDisplay';
 import Navbar from '../shared/Navbar';
 import Footer from '../shared/Footer';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
 	const [listings, setListings] = useState<Listing[] | undefined>(undefined);
@@ -47,9 +48,11 @@ const Home = () => {
 					<Filter />
 				</div>
 				<ListingsDisplay listings={listings} />
-				<div className="stlacitko">
-					<p className="plusko">+</p>
-				</div>
+				<Link to="addListing">
+					<div className="stlacitko">
+						<p className="plusko">+</p>
+					</div>
+				</Link>
 			</div>
 			<Footer />
 		</div>

@@ -1,0 +1,23 @@
+.detailWrapper{
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.detailWindow{
+  width: 80%;
+  height: 70%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 7px solid dodgerblue;
+  border-radius: 50px;
+  padding: 100px;
+}
+.subDiv{
+  height: 80%;
+  border-left: 2px solid lightgray;
+}
+img{
+  width: 40vw;
+}

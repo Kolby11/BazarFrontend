@@ -15,8 +15,8 @@ export interface Category {
 export interface User {
    id: number;
    username: string;
-   email: string;
    phone_number: string;
+   email: string;
 }
 
 export interface SecureUser {

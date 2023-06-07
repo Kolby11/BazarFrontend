@@ -8,6 +8,7 @@ import Footer from '../shared/Footer';
 
 import "./styles/profilePage.css"
 import { getUserListings, getUserSavedListings } from '../../services/apiServices/listingApi';
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
   const sessionStr = localStorage.getItem("sessionStr");
@@ -55,7 +56,7 @@ const Profile = () => {
   return (
     <div>
       <Navbar />
-      <div className='m-5 flex'>
+      <div className='m-5 flex ProfileWrapper'>
         <ProfileInfo />
         <div className="m-5">
           <button className="btn btn-primary mx-3" onClick={() => setSelectedListings(myListings)}>
@@ -68,6 +69,11 @@ const Profile = () => {
         <ListingMenu />
         <ListingsDisplay listings={selectedListings} />
       </div>
+      <Link to="/addListing">
+        <div className="stlacitko">
+          <p className="plusko">+</p>
+        </div>
+      </Link>
       <Footer />
     </div>
   );

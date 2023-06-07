@@ -7,12 +7,13 @@ import "./styles/filter.css"
 
 const Filter = () => {
   const [sliderValue, setSlider] = useState<number>(0);
-  const [categories, setCategories] = useState<Category[]|null>(null);
+  const [categories, setCategories] = useState<Category[] | null>(null);
 
-  useEffect(() => {const fetchListings = async () => {
-    const result = await getAllCategories();
-    setCategories(result);
-  };
+  useEffect(() => {
+    const fetchListings = async () => {
+      const result = await getAllCategories();
+      setCategories(result);
+    };
     fetchListings();
   }, []);
   return (
@@ -23,11 +24,9 @@ const Filter = () => {
         placeholder="Search.."
       ></input>
       <select className="input-group-text" name="category" id="category">
-        {categories!=null && (categories.map((item) => 
-          {
-            console.log(item.name)
-            return <option>{item.name}</option>;
-          })
+        {categories != null && (categories.map((item) => {
+          return <option>{item.name}</option>;
+        })
         )}
       </select>
       <div className="slider">

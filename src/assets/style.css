@@ -14,8 +14,14 @@
   align-items: center;
   justify-content: center;
 }
-.stlacitko .plusko{
-  font-size: 60px;
-  display: inline-block;
-  padding: 1vh;
+.plusko{
+  margin: 0;
+  padding: 0;
+  height: fit-content;
+}
+a{
+  color: black;
+}
+a:visited{
+  color: black;
 }

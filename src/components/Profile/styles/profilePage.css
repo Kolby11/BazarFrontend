@@ -1,6 +1,3 @@
-.wrapper{
-  width: 100vw;
+.ProfileWrapper{
   height: 100vh;
-  display: flex;
-  flex-direction: column;
 }

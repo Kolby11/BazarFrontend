@@ -30,12 +30,12 @@ export async function createListing(listing: Listing): Promise<boolean> {
    }
 }
 
-export async function getListing(id: number): Promise<Listing | null> {
+export async function getListing(id: number): Promise<Listing | undefined> {
    try {
       const response = await axios.get(`${baseApiUrl}getListing/${id}`);
-      return response.data;
+      return response.data.data[0];
    } catch {
-      return null;
+      return undefined;
    }
 }
 
