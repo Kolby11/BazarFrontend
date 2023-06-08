@@ -3,7 +3,6 @@ import { Listing } from '../../data/interfaces';
 import { Link } from 'react-router-dom';
 
 export const ListingsDisplay = ({ listings }: { listings: Listing[] | undefined }) => {
-	console.warn(listings)
 	return (
 		<div className="m-5">
 			{listings && listings.length > 0 ? (
@@ -21,7 +20,7 @@ export const ListingsDisplay = ({ listings }: { listings: Listing[] | undefined 
 				<div key={listing.id} className="row">
 					<img alt="Obrazok" className="col" />
 					<div className="col-5">
-						<b><Link to="listingDetail">{listing.name}</Link></b>
+						<b><Link to={`/listingDetail/${listing.id}`}>{listing.name}</Link></b>
 						<p>{listing.description}</p>
 					</div>
 					<b className="col">{listing.price}</b>

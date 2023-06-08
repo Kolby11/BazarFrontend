@@ -41,8 +41,8 @@ const ListingDetail = () => {
 						<p>{listing.description}</p>
 						<div>
 							<p>Pozretia: {listing.watch_count}</p>
-							<p>Cena: <strong>{listing.watch_count}</strong></p>
-							<p>Lokalita: {listing.watch_count}</p>
+							<p>Cena: <strong>{listing.price}</strong></p>
+							<p>Lokalita: {listing.locality}</p>
 						</div>
 
 					</div>

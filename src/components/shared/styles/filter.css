@@ -18,38 +18,11 @@
 
 #okinko{
     margin-right: 50px;
-    width: 200px;
+    width: 400px;
     height: 40px;
 }
 
 #category{
     width: 200px;
     height: 40px;
-}
-.cele {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-.Stlacitko{
-    
-    background-color: dodgerblue;
-  width: 100px;
-  height: 100px;
-  border-radius: 50px;
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    bottom: 10px;
-    right: 50px;
-    top: 800px;
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-}
-.plusko{
-    font-size: 75px;
-    display: inline-block;
-  padding: 10px;
 }

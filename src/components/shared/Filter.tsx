@@ -8,6 +8,11 @@ import "./styles/filter.css"
 const Filter = () => {
   const [sliderValue, setSlider] = useState<number>(0);
   const [categories, setCategories] = useState<Category[] | null>(null);
+  const [filterData, setFilterData] = useState({
+    search: "",
+    category: "",
+    sliderValue: 0
+  });
 
   useEffect(() => {
     const fetchListings = async () => {
@@ -16,29 +21,56 @@ const Filter = () => {
     };
     fetchListings();
   }, []);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFilterData(prevData => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
+
+  const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Number(e.target.value);
+    setFilterData(prevData => ({
+      ...prevData,
+      sliderValue: value
+    }));
+    setSlider(value);
+  };
+
   return (
-    <div className="d-flex justify-content-start bg-primary p-2 m-2 rounded-3 grid gap-0 column-gap-3">
+    <div className="d-flex bg-primary p-2 m-2 rounded-3 grid gap-0 column-gap-3" style={{justifyContent: "space-evenly"}}>
       <input
+        name="search"
         className="input-group-text"
         type="text"
-        placeholder="Search.."
+        placeholder="Search..."
+        value={filterData.search}
+        onChange={handleInputChange}
       ></input>
-      <select className="input-group-text" name="category" id="category">
-        {categories != null && (categories.map((item) => {
-          return <option>{item.name}</option>;
-        })
-        )}
+      <select
+        name="category"
+        className="input-group-text"
+        value={filterData.category}
+        onChange={handleInputChange}
+      >
+        {categories != null && categories.map((item) => (
+          <option key={item.id} value={item.name}>{item.name}</option>
+        ))}
       </select>
       <div className="slider">
         <input
           type="range"
           min="0"
           max="1000"
-          onChange={(e) => setSlider(Number(e.target.value))}
+          value={filterData.sliderValue}
+          onChange={handleSliderChange}
         ></input>
         <p id="rangeValue">{sliderValue}</p>
       </div>
     </div>
   );
 };
+
 export default Filter;
