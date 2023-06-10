@@ -7,7 +7,8 @@ import Navbar from '../shared/Navbar';
 import Footer from '../shared/Footer';
 
 import "./styles/profilePage.css"
-import { getUserListings, getUserSavedListings } from '../../services/apiServices/listingApi';
+import { getUserListings } from '../../services/apiServices/listingApi';
+import { getUserSavedListings } from '../../services/apiServices/savedApi';
 import { Link } from 'react-router-dom';
 
 const Profile = () => {
@@ -34,22 +35,25 @@ const Profile = () => {
       return
     }
   };
-  // const fetchMySavedListings = async () => {
-  //   try {
-  //     const result = await getUserSavedListings();
-  //     setMyListings(result);
+  const fetchMySavedListings = async () => {
+    if (!sessionStr) {
+      return
+    }
+    try {
+      const result = await getUserSavedListings(sessionStr);
+      setMyListings(result);
 
-  //   }
-  //   catch (error) {
-  //     console.error(error)
-  //     return
-  //   }
-  // };
+    }
+    catch (error) {
+      console.error(error)
+      return
+    }
+  };
 
   useEffect(() => {
     if (isLoggedIn) {
       fetchMyListings();
-      // fetchMySavedListings();
+      fetchMySavedListings();
     }
   }, []);
 

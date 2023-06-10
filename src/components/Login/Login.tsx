@@ -1,4 +1,5 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import "./styles/login.css"
 import { loginUser } from '../../services/apiServices/authApi';
@@ -7,6 +8,8 @@ import Navbar from '../shared/Navbar';
 import Footer from '../shared/Footer';
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: '',
     heslo: '',
@@ -25,7 +28,8 @@ const Login = () => {
     const loginCredentials: LoginCredentials = { email: formData.email, password: formData.heslo }
     const success = await loginUser(loginCredentials);
     if (success && localStorage["sessionStr"]) {
-      console.log("success")
+      window.alert("Prihlásenie úspešné");
+      navigate("/profile");
     }
   };
 
@@ -57,7 +61,7 @@ const Login = () => {
         </form>
       </div>
       <Footer />
-    </div >
+    </div>
   )
 }
 

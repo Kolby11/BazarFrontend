@@ -12,7 +12,9 @@ export async function registerUser(user: SecureUser): Promise<boolean> {
          },
       };
       const response = await axios.post("http://localhost:5000/api/v1/auth/register/", body);
-      return true;
+      console.log(response);
+      if (response.status === 200) return true;
+      return false;
    } catch (error) {
       console.error(error);
       return false;

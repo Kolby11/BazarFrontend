@@ -1,4 +1,6 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
+
+import { useNavigate } from 'react-router-dom';
 import { registerUser } from '../../services/apiServices/authApi';
 import { SecureUser } from '../../data/interfaces';
 import Footer from '../shared/Footer';
@@ -7,6 +9,8 @@ import Navbar from '../shared/Navbar';
 import "./styles/register.css"
 
 const RegistrationForm = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     prihlasovacieMeno: '',
     heslo: '',
@@ -30,9 +34,11 @@ const RegistrationForm = () => {
       phone_number: formData.telefonneCislo,
       email: formData.email
     }
-    const request = await registerUser(user);
-    console.log(user)
-    console.warn(request)
+    const success = await registerUser(user);
+    if (success) {
+      window.alert("Registrácia úspešná");
+      navigate("/login");
+    }
 
   };
 
