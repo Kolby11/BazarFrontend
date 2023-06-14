@@ -1,11 +1,9 @@
-import { Listing } from "../../data/interfaces";
 import axios from "axios";
+import { Listing } from "../../data/interfaces";
 
-const baseApiUrl: String = "http://localhost:5000/api/v1/listing/";
+const baseApiUrl = "http://localhost:5000/api/v1/listing/";
 
-export async function getAllListings(
-  limit?: number
-): Promise<Listing[] | undefined> {
+export async function getAllListings(limit: number | undefined) {
   try {
     if (limit) {
       const response = await axios.get(`${baseApiUrl}limit=${limit}`);
@@ -20,12 +18,15 @@ export async function getAllListings(
   }
 }
 
-export async function createListing(listing: Listing): Promise<boolean> {
+export async function createListing(listing: Listing, img: File | undefined) {
+  const sessionStr = localStorage.getItem("sessionStr");
+  if (sessionStr === undefined) return false;
   try {
-    const response = await axios.post(
-      `${baseApiUrl}createListing`,
-      JSON.stringify(listing)
-    );
+    const payload = {
+      listing: listing,
+      sessionStr: sessionStr,
+    };
+    const response = await axios.post(`${baseApiUrl}createListing/`, payload);
     return response.status === 201;
   } catch (error) {
     console.error(error);
@@ -33,7 +34,7 @@ export async function createListing(listing: Listing): Promise<boolean> {
   }
 }
 
-export async function getListing(id: number): Promise<Listing | undefined> {
+export async function getListing(id: number) {
   try {
     const response = await axios.get(`${baseApiUrl}getListing/${id}`);
     return response.data.data[0];
@@ -42,21 +43,16 @@ export async function getListing(id: number): Promise<Listing | undefined> {
   }
 }
 
-export async function editListing(
-  id: number,
-  listing: Listing
-): Promise<boolean> {
+export async function editListing(id: number, listing: Listing) {
   try {
-    const response = await axios.put(
-      `${baseApiUrl}editListing/${id}`,
-      JSON.stringify(listing)
-    );
+    const response = await axios.put(`${baseApiUrl}editListing/${id}`, listing);
     return response.status === 200;
   } catch {
     return false;
   }
 }
-export async function deleteListing(id: number): Promise<boolean> {
+
+export async function deleteListing(id: number) {
   try {
     const response = await axios.delete(`${baseApiUrl}deleteListing/${id}`);
     return response.status === 200;
@@ -65,9 +61,7 @@ export async function deleteListing(id: number): Promise<boolean> {
   }
 }
 
-export async function getUserListings(
-  id: Number
-): Promise<Listing[] | undefined> {
+export async function getUserListings(id: number) {
   try {
     const response = await axios.get(`${baseApiUrl}/getUserListings/${id}`);
     return response.data.data;

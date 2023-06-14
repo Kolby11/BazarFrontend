@@ -1,21 +1,21 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useState } from "react";
 
-import { useNavigate } from 'react-router-dom';
-import { registerUser } from '../../services/apiServices/authApi';
-import { SecureUser } from '../../data/interfaces';
-import Footer from '../shared/Footer';
-import Navbar from '../shared/Navbar';
+import { useNavigate } from "react-router-dom";
+import { registerUser } from "../../services/apiServices/authApi";
+import { SecureUser } from "../../data/interfaces";
+import Footer from "../shared/Footer";
+import Navbar from "../shared/Navbar";
 
-import "./styles/register.css"
+import "./styles/register.css";
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    prihlasovacieMeno: '',
-    heslo: '',
-    telefonneCislo: '',
-    email: '',
+    prihlasovacieMeno: "",
+    heslo: "",
+    telefonneCislo: "",
+    email: "",
   });
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -29,24 +29,24 @@ const RegistrationForm = () => {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const user: SecureUser = {
-      id: undefined, username: formData.prihlasovacieMeno,
+      id: undefined,
+      username: formData.prihlasovacieMeno,
       password: formData.heslo,
       phone_number: formData.telefonneCislo,
-      email: formData.email
-    }
+      email: formData.email,
+    };
     const success = await registerUser(user);
     if (success) {
       window.alert("Registrácia úspešná");
       navigate("/login");
     }
-
   };
 
   return (
     <div>
       <Navbar />
-      <div className='wrapper'>
-        <form onSubmit={handleSubmit}>
+      <div className="wrapper">
+        <form onSubmit={(e) => handleSubmit(e)}>
           <h1>Registrácia</h1>
           <label htmlFor="prihlasovacie meno">Prihlasovacie meno:</label>
           <input
@@ -55,7 +55,7 @@ const RegistrationForm = () => {
             name="prihlasovacieMeno"
             required
             value={formData.prihlasovacieMeno}
-            onChange={handleInputChange}
+            onChange={(e) => handleInputChange(e)}
           />
           <label htmlFor="heslo">Heslo:</label>
           <input
@@ -64,7 +64,7 @@ const RegistrationForm = () => {
             name="heslo"
             required
             value={formData.heslo}
-            onChange={handleInputChange}
+            onChange={(e) => handleInputChange(e)}
           />
           <label htmlFor="e-mail">E-mail:</label>
           <input
@@ -73,7 +73,7 @@ const RegistrationForm = () => {
             name="email"
             required
             value={formData.email}
-            onChange={handleInputChange}
+            onChange={(e) => handleInputChange(e)}
           />
           <label htmlFor="telefonne cislo">Telefónne číslo:</label>
           <input
@@ -82,7 +82,7 @@ const RegistrationForm = () => {
             name="telefonneCislo"
             required
             value={formData.telefonneCislo}
-            onChange={handleInputChange}
+            onChange={(e) => handleInputChange(e)}
           />
           <input type="submit" value="Registrovať" />
         </form>

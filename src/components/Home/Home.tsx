@@ -15,7 +15,7 @@ const Home = () => {
   const [listings, setListings] = useState<Listing[] | undefined>(undefined);
 
   const fetchListings = async () => {
-    const result = await getAllListings();
+    const result = await getAllListings(undefined);
     setListings(result);
   };
 
