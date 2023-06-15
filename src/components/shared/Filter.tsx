@@ -1,25 +1,24 @@
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import { Category } from "../../data/interfaces";
 import { getAllCategories } from "../../services/apiServices/categoryApi";
-import { useEffect, useState } from "react";
 
-import "./styles/filter.css";
-
-const Filter = () => {
+const Filter = ({ onFilter }: { onFilter: (filterData: any) => void }) => {
   const [sliderValue, setSlider] = useState<number>(0);
-  const [categories, setCategories] = useState<Category[] | null>(null);
+  const [categories, setCategories] = useState<Category[] | undefined>(
+    undefined
+  );
   const [filterData, setFilterData] = useState({
     search: "",
-    category: "",
+    category: 0,
     sliderValue: 0,
   });
 
   useEffect(() => {
-    const fetchListings = async () => {
+    const fetchCategories = async () => {
       const result = await getAllCategories();
       setCategories(result);
     };
-    fetchListings();
+    fetchCategories();
   }, []);
 
   const handleInputChange = (
@@ -41,12 +40,17 @@ const Filter = () => {
     setSlider(value);
   };
 
+  const submitFilter = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    onFilter(filterData); // Pass the filterData to the parent component
+  };
+
   return (
     <div
       className="d-flex bg-primary p-2 m-2 rounded-3 grid gap-0 column-gap-3"
       style={{ justifyContent: "space-evenly", alignItems: "center" }}
     >
-      <form>
+      <form onSubmit={submitFilter}>
         <input
           name="search"
           required
@@ -73,7 +77,7 @@ const Filter = () => {
         </select>
         <div className="slider">
           <input
-            name="price"
+            name="sliderValue"
             type="range"
             min="0"
             max="1000"

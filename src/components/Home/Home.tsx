@@ -1,26 +1,40 @@
 import React, { useEffect, useState } from "react";
-//types
-import { Listing } from "../../data/interfaces";
-//services
-import { getAllListings } from "../../services/apiServices/listingApi";
-
-//components
-import Filter from "../shared/Filter";
-import { ListingsDisplay } from "../shared/ListingDisplay";
+import { Link } from "react-router-dom";
 import Navbar from "../shared/Navbar";
 import Footer from "../shared/Footer";
-import { Link } from "react-router-dom";
+import { ListingsDisplay } from "../shared/ListingDisplay";
+import Filter from "../shared/Filter";
+import {
+  getAllListings,
+  getFilteredListings,
+} from "../../services/apiServices/listingApi";
+import { Listing } from "../../data/interfaces";
 
 const Home = () => {
   const [listings, setListings] = useState<Listing[] | undefined>(undefined);
 
-  const fetchListings = async () => {
-    const result = await getAllListings(undefined);
-    setListings(result);
+  const fetchListings = async (filterData: any) => {
+    if (
+      filterData.search === "" &&
+      filterData.category === 0 &&
+      filterData.sliderValue === 0
+    ) {
+      // Fetch all listings if no filters applied
+      const result = await getAllListings(undefined);
+      setListings(result);
+    } else {
+      // Fetch filtered listings based on filterData
+      const result = await getFilteredListings(
+        filterData.search,
+        filterData.category,
+        filterData.sliderValue
+      );
+      setListings(result);
+    }
   };
 
   useEffect(() => {
-    fetchListings();
+    fetchListings({ search: "", category: 0, sliderValue: 0 });
   }, []);
 
   return (
@@ -44,7 +58,7 @@ const Home = () => {
           <i className="fa fa-folder"></i>
         </button>
         <div className="topnav">
-          <Filter />
+          <Filter onFilter={fetchListings} />
         </div>
         <ListingsDisplay listings={listings} />
         <Link to="addListing">
