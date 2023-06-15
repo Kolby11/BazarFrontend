@@ -46,38 +46,45 @@ const Filter = () => {
       className="d-flex bg-primary p-2 m-2 rounded-3 grid gap-0 column-gap-3"
       style={{ justifyContent: "space-evenly", alignItems: "center" }}
     >
-      <input
-        name="search"
-        className="input-group-text"
-        type="text"
-        placeholder="Search..."
-        value={filterData.search}
-        onChange={handleInputChange}
-        style={{ width: "40%" }}
-      ></input>
-      <select
-        name="category"
-        className="input-group-text"
-        value={filterData.category}
-        onChange={handleInputChange}
-      >
-        {categories != null &&
-          categories.map((item) => (
-            <option key={item.id} value={item.name}>
-              {item.name}
-            </option>
-          ))}
-      </select>
-      <div className="slider">
+      <form>
         <input
-          type="range"
-          min="0"
-          max="1000"
-          value={filterData.sliderValue}
-          onChange={handleSliderChange}
+          name="search"
+          required
+          className="input-group-text"
+          type="text"
+          placeholder="Search..."
+          value={filterData.search}
+          onChange={handleInputChange}
+          style={{ width: "40%" }}
         ></input>
-        <p id="rangeValue">{sliderValue}</p>
-      </div>
+        <select
+          name="category"
+          required
+          className="input-group-text"
+          value={filterData.category}
+          onChange={handleInputChange}
+        >
+          {categories != null &&
+            categories.map((item) => (
+              <option key={item.id} value={item.id}>
+                {item.name}
+              </option>
+            ))}
+        </select>
+        <div className="slider">
+          <input
+            name="price"
+            type="range"
+            min="0"
+            max="1000"
+            required
+            value={filterData.sliderValue}
+            onChange={handleSliderChange}
+          ></input>
+          <p id="rangeValue">{sliderValue}</p>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
     </div>
   );
 };
