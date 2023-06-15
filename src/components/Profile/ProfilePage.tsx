@@ -19,7 +19,9 @@ const Profile = () => {
   const [myListings, setMyListings] = useState<Listing[] | undefined>(
     undefined
   );
-  const [mySavedListings, setMySavedListings] = useState(undefined);
+  const [mySavedListings, setMySavedListings] = useState<Listing[] | undefined>(
+    undefined
+  );
   const [selectedListings, setSelectedListings] = useState<
     Listing[] | undefined
   >(undefined);
@@ -42,7 +44,7 @@ const Profile = () => {
     }
     try {
       const result = await getUserSavedListings(sessionStr);
-      setMyListings(result);
+      setMySavedListings(result);
     } catch (error) {
       console.error(error);
       return;
@@ -53,6 +55,7 @@ const Profile = () => {
     if (isLoggedIn) {
       fetchMyListings();
       fetchMySavedListings();
+      setSelectedListings(myListings);
     }
   }, []);
 

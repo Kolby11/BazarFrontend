@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { Category } from '../../data/interfaces';
-import { getAllCategories } from '../../services/apiServices/categoryApi';
-import { useEffect, useState } from 'react';
+import * as React from "react";
+import { Category } from "../../data/interfaces";
+import { getAllCategories } from "../../services/apiServices/categoryApi";
+import { useEffect, useState } from "react";
 
-import "./styles/filter.css"
+import "./styles/filter.css";
 
 const Filter = () => {
   const [sliderValue, setSlider] = useState<number>(0);
@@ -11,7 +11,7 @@ const Filter = () => {
   const [filterData, setFilterData] = useState({
     search: "",
     category: "",
-    sliderValue: 0
+    sliderValue: 0,
   });
 
   useEffect(() => {
@@ -22,25 +22,30 @@ const Filter = () => {
     fetchListings();
   }, []);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
-    setFilterData(prevData => ({
+    setFilterData((prevData) => ({
       ...prevData,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(e.target.value);
-    setFilterData(prevData => ({
+    setFilterData((prevData) => ({
       ...prevData,
-      sliderValue: value
+      sliderValue: value,
     }));
     setSlider(value);
   };
 
   return (
-    <div className="d-flex bg-primary p-2 m-2 rounded-3 grid gap-0 column-gap-3" style={{justifyContent: "space-evenly"}}>
+    <div
+      className="d-flex bg-primary p-2 m-2 rounded-3 grid gap-0 column-gap-3"
+      style={{ justifyContent: "space-evenly", alignItems: "center" }}
+    >
       <input
         name="search"
         className="input-group-text"
@@ -48,6 +53,7 @@ const Filter = () => {
         placeholder="Search..."
         value={filterData.search}
         onChange={handleInputChange}
+        style={{ width: "40%" }}
       ></input>
       <select
         name="category"
@@ -55,9 +61,12 @@ const Filter = () => {
         value={filterData.category}
         onChange={handleInputChange}
       >
-        {categories != null && categories.map((item) => (
-          <option key={item.id} value={item.name}>{item.name}</option>
-        ))}
+        {categories != null &&
+          categories.map((item) => (
+            <option key={item.id} value={item.name}>
+              {item.name}
+            </option>
+          ))}
       </select>
       <div className="slider">
         <input

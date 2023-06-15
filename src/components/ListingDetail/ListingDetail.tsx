@@ -6,6 +6,7 @@ import { getListing } from "../../services/apiServices/listingApi";
 import { Listing } from "../../data/interfaces";
 
 import "./styles/listingDetail.css";
+import { saveListing } from "../../services/apiServices/savedApi";
 const ListingDetail = () => {
   const isLoggedIn = localStorage.getItem("sessionStr") !== null;
   const { id } = useParams();
@@ -29,7 +30,8 @@ const ListingDetail = () => {
   }
 
   const onClickSave = (id: number) => {
-    console.log("Save button clicked", id);
+    if (!isLoggedIn) return;
+    saveListing(localStorage["sessionStr"], id);
   };
 
   // Render the listing details

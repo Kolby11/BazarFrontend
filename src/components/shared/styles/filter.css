@@ -1,28 +1,30 @@
-.slider{
-    margin-left: 50px;
-    justify-content: right;
+.slider {
+  margin-left: 50px;
+  justify-content: right;
+  color: aquamarine;
+  overflow: hidden;
 }
-.bau{
-    -webkit-appearance: none;
-    appearance: none;
-    width: 250px;
-    height: 10px;
-    border-radius:40px; 
-    cursor: pointer;
+.bau {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 250px;
+  height: 10px;
+  border-radius: 40px;
+  cursor: pointer;
 }
-.hodnota{   
-    border-radius: 20%;
-    background-color: dodgerblue;
-    width: fit-content;
-}
-
-#okinko{
-    margin-right: 50px;
-    width: 400px;
-    height: 40px;
+.hodnota {
+  border-radius: 20%;
+  background-color: dodgerblue;
+  width: fit-content;
 }
 
-#category{
-    width: 200px;
-    height: 40px;
+#okinko {
+  margin-right: 50px;
+  width: 400px;
+  height: 40px;
+}
+
+#category {
+  width: 200px;
+  height: 40px;
 }
